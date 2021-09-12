@@ -1,28 +1,23 @@
-import {Server, Request, ResponseToolkit} from "@hapi/hapi";
-
+import { Server } from "@hapi/hapi";
+import { Routes } from "./routes";
 const init = async () => {
+  const server: Server = new Server({
+    port: 3000,
+    host: "localhost",
+    router: {
+      stripTrailingSlash: true,
+    },
+  });
 
-    const server: Server = new Server({
-        port: 3000,
-        host: 'localhost'
-    });
+  server.route(Routes);
 
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request: Request, h: ResponseToolkit) => {
-            return 'Hello Demo!';
-        }
-    });
-
-    await server.start();
-    console.log(`Server running on ${server.info.uri}`);
+  await server.start();
+  console.log(`Server running on ${server.info.uri}`);
 };
 
-process.on('unhandledRejection', (err) => {
-
-    console.log(err);
-    process.exit(1);
+process.on("unhandledRejection", (err) => {
+  console.log(err);
+  process.exit(1);
 });
 
 init();
