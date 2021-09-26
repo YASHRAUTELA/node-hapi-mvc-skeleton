@@ -1,7 +1,7 @@
 import { Request, ResponseToolkit } from "@hapi/hapi";
 
 class AdminController {
-    async getAdminData(request: Request, h: ResponseToolkit){
+    getAdminData = async (request: Request, h: ResponseToolkit) => {
         try{
             return h.response({status: "success", message: "Admin Data"});
         }catch(error){
