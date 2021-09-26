@@ -1,14 +1,9 @@
 import { ServerRoute } from "@hapi/hapi";
-
+import { userController } from "../controller/UserController";
 export const userRoutes: ServerRoute[] = [
   {
     method: "GET",
-    path: "/",
-    handler: () => "Hello World user",
-  },
-  {
-    method: "GET",
-    path: "/abc",
-    handler: () => "Hello World abc",
+    path: "/user",
+    handler: userController.getUserData,
   },
 ];
